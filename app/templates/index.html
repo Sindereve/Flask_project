@@ -1,12 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hello, {{ current_user.username }}!</h1>
+    <h1>{{ _('Hello, %(username)s!', username=current_user.username)}}</h1>
+    
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.post.label }}<br>
+            {{ form.post(cols=32, rows=4) }}<br>
+            {{ form.submit }}
+            {% for error in form.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+    </form>
+    {% endif %}
+    
     {% for post in posts %}
-        <div>
-            <p>
-                Автор - {{ post.author.username }}. <b>{{ post.body }}</b>
-            </p>
-        </div>
+        {% include '_post.html' %}
     {% endfor %}
+    {% if next_url %}
+        <a href="{{ next_url }}">{{ _('Older posts') }}</a>
+    {% endif %}
+    {% if prev_url %}
+        <a href="{{ prev_url }}">{{ _('Newer posts') }}</a>
+    {% endif %}
 {% endblock %}
