@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-25 22:34+0500\n"
+"POT-Creation-Date: 2025-05-26 19:54+0500\n"
 "PO-Revision-Date: 2025-05-25 23:12+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -79,29 +79,29 @@ msgstr "Невеное имя пользователя или пароль"
 msgid "You are a registered user!"
 msgstr "Вы уже регистрировались!"
 
-#: app/routes.py:116
+#: app/routes.py:117
 msgid "Your changes have been saved."
 msgstr "Ваши изменения были сохранены."
 
-#: app/routes.py:130 app/routes.py:149
+#: app/routes.py:131 app/routes.py:150
 #, python-format
 msgid "User %(username)s not found."
 msgstr "Пользователь %(username)s не найден."
 
-#: app/routes.py:133
+#: app/routes.py:134
 msgid "You cannot follow yourself!"
 msgstr "Вы не можете подписаться на себя"
 
-#: app/routes.py:137
+#: app/routes.py:138
 #, python-format
 msgid "You are following %(username)s!"
 msgstr "Вы подписались на %(username)s!"
 
-#: app/routes.py:152
+#: app/routes.py:153
 msgid "You cannot unfollow yourself!"
 msgstr "Вы не можете отказаться от подписки на себя!"
 
-#: app/routes.py:156
+#: app/routes.py:157
 #, python-format
 msgid "You are unfollowing %(username)s!"
 msgstr "Вы отписалиьс от %(username)s!"
@@ -116,7 +116,9 @@ msgstr "Произошла непредвиденная ошибка"
 
 #: app/templates/500.html:5
 msgid "The administrator has been notified. Sorry for the inconvenience!"
-msgstr "Администратор был уведомлен. Приносим извинения за доставленные неудобства!"
+msgstr ""
+"Администратор был уведомлен. Приносим извинения за доставленные "
+"неудобства!"
 
 #: app/templates/_post.html:8
 msgid "says:"

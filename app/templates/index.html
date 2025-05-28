@@ -1,29 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ _('Hello, %(username)s!', username=current_user.username)}}</h1>
-    
-    {% if form %}
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.post.label }}<br>
-            {{ form.post(cols=32, rows=4) }}<br>
-            {{ form.submit }}
-            {% for error in form.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-    </form>
-    {% endif %}
-    
-    {% for post in posts %}
-        {% include '_post.html' %}
-    {% endfor %}
-    {% if next_url %}
-        <a href="{{ next_url }}">{{ _('Older posts') }}</a>
-    {% endif %}
-    {% if prev_url %}
-        <a href="{{ prev_url }}">{{ _('Newer posts') }}</a>
+
+    <!-- Список постов -->
+    <div class="space-y-6 max-w-2xl mx-auto">
+        {% for post in posts %}
+            {% include '_post.html' %}
+        {% endfor %}
+    </div>
+
+    <!-- Пагинация -->
+    {% if next_url or prev_url %}
+        <div class="flex justify-center gap-4 mt-10">
+            {% if prev_url %}
+                <a href="{{ prev_url }}" 
+                   class="relative inline-flex items-center px-5 py-2 rounded-full text-white font-medium overflow-hidden group">
+                    <span class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 animate-pulse"></span>
+                    <span class="relative z-10 flex items-center">
+                        <i class="fas fa-arrow-left mr-2"></i> {{ _('Newer posts') }}
+                    </span>
+                    <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
+                </a>
+            {% endif %}
+            {% if next_url %}
+                <a href="{{ next_url }}" 
+                   class="relative inline-flex items-center px-5 py-2 rounded-full text-white font-medium overflow-hidden group">
+                    <span class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 animate-pulse"></span>
+                    <span class="relative z-10 flex items-center">
+                        {{ _('Older posts') }} <i class="fas fa-arrow-right ml-2"></i>
+                    </span>
+                    <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
+                </a>
+            {% endif %}
+        </div>
     {% endif %}
 {% endblock %}

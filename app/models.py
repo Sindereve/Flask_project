@@ -89,6 +89,11 @@ class User(UserMixin, db.Model):
             .order_by(Post.timestamp.desc())
         )
     
+    def posts_count(self):
+        return db.session.scalar(sa.select(sa.func.count()).select_from(
+            self.posts.select().subquery()
+        ))
+    
 
 @login.user_loader
 def load_user(id):
@@ -96,11 +101,30 @@ def load_user(id):
 
 class Post(db.Model):
     id:so.Mapped[int] = so.mapped_column(primary_key=True)
-    body: so.Mapped[str] = so.mapped_column(sa.String(140))
-    timestamp: so.Mapped[datetime] = so.mapped_column(index=True, default=lambda: datetime.now(timezone.utc))
+    title: so.Mapped[str] = so.mapped_column(
+        sa.String(255),
+        nullable=False,
+        server_default='Untitled Post'
+    )
+    body: so.Mapped[str] = so.mapped_column(sa.String())
+    timestamp: so.Mapped[datetime] = so.mapped_column(
+        index=True,
+        default=lambda: datetime.now(timezone.utc)
+    )
     user_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey(User.id), index=True)
     author: so.Mapped[User] = so.relationship(back_populates='posts')
-
+    images: so.Mapped[list['Image']] = so.relationship(back_populates='post')
+    
     def __repr__(self):
         return '<Post {}>'.format(self.body)
     
+class Image(db.Model):
+    id: so.Mapped[int] = so.mapped_column(primary_key=True)
+    url: so.Mapped[str] = so.mapped_column(sa.String())
+    caption: so.Mapped[str] = so.mapped_column(sa.String(255), nullable=True)
+    position = db.Column(db.Integer, default=0, nullable=False)
+    post_id: so.Mapped[int] = so.mapped_column(sa.ForeignKey('post.id'))
+    post: so.Mapped[Post] = so.relationship(back_populates='images')
+
+    def __repr__(self):
+        return '<Image {} {}>'.format(self.caption, self.url)

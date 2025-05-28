@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, Length
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, FileField
+from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, Length, Optional, URL
 from flask_babel import lazy_gettext as _l
 import sqlalchemy as sa
 from app import db
@@ -57,5 +57,18 @@ class EmptyForm(FlaskForm):
     submit = SubmitField(_l('Submit'))
 
 class PostForm(FlaskForm):
-    post = TextAreaField(_l('Say something'), validators=[DataRequired(), Length(min=1, max=140)])
-    submit = SubmitField(_l('Submit'))
+    title = StringField(
+        _l('Title'),
+        validators=[DataRequired(), Length(max=255)]
+    )
+    body = TextAreaField(
+        _l('Body'),
+        validators=[DataRequired()]
+    )
+    image = FileField(_l('Upload Image'),validators=[
+        Optional()])
+    image_url = StringField(_l('Or paste image URL here'), validators=[
+        Optional(), 
+        URL(message=_l('Invalid URL format'))
+    ])
+    submit = SubmitField(_l('Publish'))

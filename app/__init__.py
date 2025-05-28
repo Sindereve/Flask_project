@@ -5,22 +5,39 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_moment import Moment
 from flask_babel import Babel
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 import os
 import logging
 from logging.handlers import RotatingFileHandler  # ,SMTPHandler (добавить, если будем использовать уведомления по email)
 
+
 def get_locale():
-    # return request.accept_languages.best_match(app.config['LANGUAGES'])
-    return 'ru'
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    # return 'en'
+
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+photos = UploadSet('photos', IMAGES)
+configure_uploads(app, photos)
+upload_folder = app.config['UPLOADED_PHOTOS_DEST']
+os.makedirs(upload_folder, exist_ok=True)
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
 login = LoginManager(app)
 login.login_view = 'login'
 moment = Moment(app)
 babel = Babel(app, locale_selector=get_locale)
+
+@app.context_processor
+def inject_view_args():
+    return {
+        'view_args': request.view_args if request else {}
+    }
 
 
 if not app.debug:

@@ -1,11 +1,51 @@
-<table>
-    <tr valign="top">
-        <td><img src="{{ post.author.avatar(36) }}"></td>
-        <td>
-            <a href="{{ url_for('user', username=post.author.username)}}">
-                {{ post.author.username }} 
-            </a>
-            {{ _("says:") }} {{ moment(post.timestamp).fromNow() }}<br>
-            {{ post.body }}</td>
-    </tr>
-</table>
+<div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow duration-300">
+    <div class="flex items-start space-x-4">
+    
+        <div class="flex-1">    
+            <div class="flex items-center justify-between">
+                <!-- Аватар + Имя автора -->
+                <div class="flex items-center space-x-2">
+                    <a href="{{ url_for('user', username=post.author.username) }}">
+                        <img src="{{ post.author.avatar(40) }}" 
+                            alt="Avatar" 
+                            class="w-10 h-10 rounded-lg border-4 border-gray-100 shadow-sm transition-transform duration-300 hover:scale-110">
+                    </a>
+                    
+                    <!-- Имя автора -->
+                    <a href="{{ url_for('user', username=post.author.username) }}" 
+                    class="font-semibold text-gray-800 hover:text-purple-600 transition-colors">
+                        {{ post.author.username }}
+                    </a>
+                </div>
+
+                <!-- Время (справа в углу) -->
+                <span class="text-xs text-gray-400">
+                    {{ moment(post.timestamp).fromNow() }}
+                </span>
+            </div>
+
+            <!-- Заголовок статьи -->
+            {% if post.title %}
+                <h2 class="mt-2 text-xl font-bold text-gray-900">
+                    {{ post.title }}
+                </h2>
+            {% endif %}
+
+            <!-- Изображение к посту -->
+            {% if post.images|length > 0 %}
+                <div class="mt-3 flex justify-center">
+                    <img src="{{ post.images[0].url }}" 
+                        alt="{{ post.images[0].caption or 'Post image' }}" 
+                        class="max-w-full h-auto rounded-lg shadow-sm">
+                </div>
+            {% endif %}
+            
+            <!-- Текст поста -->
+            <div class="mt-3 text-gray-700 whitespace-pre-line">
+                {{ post.body }}
+            </div>
+
+            <!-- Дополнительные действия -->
+        </div>
+    </div>
+</div>

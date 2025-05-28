@@ -1,0 +1,78 @@
+<!-- templates/header_base.html -->
+<header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Логотип -->
+        <a href="{{ url_for('index') }}" 
+           class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500 flex items-center">
+            <i class="fas fa-sparkles mr-2"></i> SinDiLitik!
+        </a>
+
+        <!-- Навигация -->
+        <nav class="hidden md:flex items-center space-x-4">
+            <!-- Главная -->
+            <a href="{{ url_for('index') }}" 
+               class="nav-link relative inline-flex items-center px-4 py-2 rounded-full text-gray-700 transition-all duration-300 
+                      {% if request.endpoint == 'index' %}
+                          bg-gradient-to-r from-purple-500 to-indigo-500 text-white pointer-events-none
+                      {% else %}
+                          hover:bg-gradient-to-r hover:from-purple-500 hover:to-indigo-500 hover:!text-white
+                      {% endif %}
+                      z-10">
+                <i class="fas fa-home mr-2"></i>
+                {{ _('Home') }}
+            </a>
+
+            {% if current_user.is_anonymous %}
+                <!-- Кнопка Login -->
+                <a href="{{ url_for('login') }}" 
+                   class="gradient-btn relative inline-flex items-center px-5 py-2 rounded-full text-sm font-medium overflow-hidden group">
+                    <span class="absolute inset-0 bg-gradient-to-r from-pink-500 to-yellow-500 animate-pulse"></span>
+                    <span class="relative z-10 flex items-center text-white">
+                        <i class="fas fa-sign-in-alt mr-2"></i>
+                        {{ _('Login') }}
+                    </span>
+                    <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
+                </a>
+            {% else %}
+                <!-- Профиль -->
+                <a href="{{ url_for('user', username=current_user.username) }}" 
+                class="nav-link relative inline-flex items-center px-4 py-2 rounded-full text-gray-700 transition-all duration-300
+                        {% if request.endpoint == 'user' and current_user.username == view_args.username %}
+                            bg-gradient-to-r from-blue-500 to-teal-500 text-white pointer-events-none
+                        {% else %}
+                            hover:bg-gradient-to-r hover:from-blue-500 hover:to-teal-500 hover:!text-white
+                        {% endif %}
+                        z-10">
+                    <i class="fas fa-user-circle mr-2"></i>
+                    {{ _('Profile') }}
+                </a>
+
+                <!-- Explore -->
+                <a href="{{ url_for('explore') }}" 
+                   class="nav-link relative inline-flex items-center px-4 py-2 rounded-full text-gray-700 transition-all duration-300
+                          {% if request.endpoint == 'explore' %}
+                              bg-gradient-to-r from-green-500 to-emerald-500 text-white pointer-events-none
+                          {% else %}
+                              hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 hover:!text-white
+                          {% endif %}
+                          z-10">
+                    <i class="fas fa-compass mr-2"></i>
+                    {{ _('Explore') }}
+                </a>
+
+                <!-- Logout -->
+                <a href="{{ url_for('logout') }}" 
+                   class="nav-link relative inline-flex items-center px-4 py-2 rounded-full text-gray-700 transition-all duration-300
+                          {% if request.endpoint == 'logout' %}
+                              bg-gradient-to-r from-red-500 to-pink-500 text-white pointer-events-none
+                          {% else %}
+                              hover:bg-gradient-to-r hover:from-red-500 hover:to-pink-500 hover:!text-white
+                          {% endif %}
+                          z-10">
+                    <i class="fas fa-sign-out-alt mr-2"></i>
+                    {{ _('Logout') }}
+                </a>
+            {% endif %}
+        </nav>
+    </div>
+</header>

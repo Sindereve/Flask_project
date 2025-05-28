@@ -1,38 +1,131 @@
-<!doctype html>
- <html>
-    <head>
-        {% if title %}
-            <title>{{ title }}</title>
-        {% else %}
-            <title>SinDiLitik!</title>
-        {% endif %}
-    </head>
-    <body>
-        <div> 
-            {{ _('Navigate:') }}
-                <a href="{{ url_for('index') }}"> {{ _('Home') }}</a>
-                {% if current_user.is_anonymous %}
-                    <a href="{{ url_for('login') }}"> {{ _('Login') }} </a>
-                {% else %}
-                    <a href="{{ url_for('user', username = current_user.username) }}">{{ _('Profile') }}</a>
-                    <a href="{{ url_for('logout') }}">{{ _('LoginOUT') }}</a>
-                    <a href="{{ url_for('explore') }}">{{ _('Explore') }}</a>
-                {% endif %}
-        </div>
-        <hr> 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
+<!DOCTYPE html>
+<html lang="{{ g.locale.split('_')[0] if g.locale else 'en' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% if title %}{{ title }}{% else %}SinDiLitik!{% endif %}{% endblock %}</title>
 
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com "></script>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css " rel="stylesheet">
+    <!-- Alpine.js -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+    <!-- Moment.js -->
+    {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
+
+    <!-- Кастомные стили -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #667eea !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    {% include "header_base.html" %}
+
+    <!-- Flash сообщения -->
+    <div id="flash-container" class="container mx-auto px-4 mt-6"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const messages = {{ get_flashed_messages(with_categories=true) | tojson }};
+            
+            if (messages.length === 0) return;
+
+            const container = document.getElementById('flash-container');
+
+            messages.forEach(([category, message]) => {
+                const div = document.createElement('div');
+                div.className = 'mb-4 p-4 rounded-lg shadow-md border-l-4 bg-white text-gray-800 flex items-center justify-between transform transition-all duration-300 ease-in-out opacity-0 translate-y-4';
+
+                // Цвет границы
+                const borderColor = {
+                    'error': 'border-red-500',
+                    'warning': 'border-yellow-500',
+                    'success': 'border-green-500',
+                    'info': 'border-blue-500'
+                }[category] || 'border-blue-500';
+                div.classList.add(borderColor);
+
+                // Иконка
+                const icon = {
+                    'error': '<i class="fas fa-exclamation-circle text-red-500 mr-3"></i>',
+                    'success': '<i class="fas fa-check-circle text-green-500 mr-3"></i>',
+                    'warning': '<i class="fas fa-exclamation-triangle text-yellow-500 mr-3"></i>',
+                    'default': '<i class="fas fa-info-circle text-blue-500 mr-3"></i>'
+                }[category] || '<i class="fas fa-info-circle text-blue-500 mr-3"></i>';
+
+                // HTML содержимое
+                div.innerHTML = `
+                    <div class="flex items-center">
+                        ${icon}
+                        <span>${message}</span>
+                    </div>
+                    <button class="ml-4 text-gray-500 hover:text-gray-700 focus:outline-none close-flash">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+
+                container.appendChild(div);
+
+                // Показать с анимацией
+                setTimeout(() => {
+                    div.classList.remove('opacity-0', 'translate-y-4');
+                    div.classList.add('opacity-100');
+                }, 50);
+
+                // Скрыть через 10 секунд
+                const hide = () => {
+                    div.classList.add('opacity-0', 'translate-y-4');
+                    div.classList.remove('opacity-100');
+                    setTimeout(() => div.remove(), 300);
+                };
+
+                // Ручное закрытие
+                div.querySelector('.close-flash').addEventListener('click', () => {
+                    hide();
+                });
+
+                // Через 10 секунд
+                setTimeout(() => {
+                    hide();
+                }, 10000);
+            });
+        });
+    </script>
+
+    <!-- Основной контент -->
+    <main class="flex-grow container mx-auto px-4 py-6">
         {% block content %}
-            <!-- All content -->
         {% endblock %}
-        {{ moment.include_moment() }}
-    </body>
- </html>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-inner mt-auto">
+        <div class="container mx-auto px-4 py-4 text-center text-gray-600">
+            &copy; {{ moment().format('YYYY') }} SinDiLitik! | 
+            <a href="#" class="text-purple-600 hover:underline">{{ _('Да, у меня есть политика') }}</a>
+        </div>
+    </footer>
+</body>
+</html>

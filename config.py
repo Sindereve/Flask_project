@@ -5,10 +5,11 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'I_am_overlord_app'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
-    POSTS_PER_PAGE = 3
+    POSTS_PER_PAGE = 10
     
     LANGUAGES = ['en', 'ru']
-
+    UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'app/static/uploads')  
+    UPLOADED_PHOTOS_ALLOW = ['jpg', 'jpeg', 'png', 'gif']
 
     # параметры для отправки инфо об ошибке на email
     # MAIL_SERVER = os.environ.get('MAIL_SERVER')

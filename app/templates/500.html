@@ -1,7 +1,35 @@
 {% extends "base.html" %}
- 
+
 {% block content %}
-    <h1>{{ _('An unexpected error has occurred') }}</h1>
-    <p>{{ _('The administrator has been notified. Sorry for the inconvenience!') }}</p>
-    <p><a href="{{ url_for('index') }}">Back</a></p>
+    <div class="flex flex-col justify-center items-center min-h-[calc(100vh-16rem)] text-center px-4">
+        <!-- Иконка ошибки -->
+        <div class="text-6xl text-red-500 mb-4">
+            <i class="fas fa-cog fa-spin"></i>
+        </div>
+
+        <!-- Заголовок 500 -->
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500">
+            500
+        </h1>
+
+        <!-- Сообщение -->
+        <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-md">
+            {{ _('An unexpected error has occurred.') }}
+        </p>
+
+        <p class="text-gray-500 mb-8 max-w-md">
+            {{ _('The administrator has been notified. Sorry for the inconvenience!') }}
+        </p>
+
+        <!-- Кнопка на главную -->
+        <a href="{{ url_for('index') }}" 
+           class="relative inline-flex items-center px-6 py-3 rounded-full text-white font-medium overflow-hidden group">
+            <span class="absolute inset-0 bg-gradient-to-r from-red-500 to-orange-500 animate-pulse"></span>
+            <span class="relative z-10 flex items-center">
+                <i class="fas fa-home mr-2"></i>
+                {{ _('Back to Home') }}
+            </span>
+            <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
+        </a>
+    </div>
 {% endblock %}
