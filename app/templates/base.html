@@ -127,5 +127,15 @@
             <a href="#" class="text-purple-600 hover:underline">{{ _('Да, у меня есть политика') }}</a>
         </div>
     </footer>
+
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert("✅ Токен скопирован в буфер обмена");
+            }, function(err) {
+                alert("❌ Не удалось скопировать токен: " + err);
+            });
+        }
+    </script>
 </body>
 </html>

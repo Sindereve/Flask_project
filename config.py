@@ -8,7 +8,7 @@ class Config:
     POSTS_PER_PAGE = 10
     
     LANGUAGES = ['en', 'ru']
-    UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'app/static/uploads')  
+    UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'app/static/images')  
     UPLOADED_PHOTOS_ALLOW = ['jpg', 'jpeg', 'png', 'gif']
 
     # параметры для отправки инфо об ошибке на email

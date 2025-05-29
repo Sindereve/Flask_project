@@ -16,7 +16,6 @@ def get_locale():
     # return 'en'
 
 
-
 app = Flask(__name__)
 app.config.from_object(Config)
 
@@ -32,6 +31,12 @@ login = LoginManager(app)
 login.login_view = 'login'
 moment = Moment(app)
 babel = Babel(app, locale_selector=get_locale)
+
+from app.api import bp as api_bp
+from app.errors import register_error_handlers
+register_error_handlers(app, api_bp)
+app.register_blueprint(api_bp, url_prefix='/api')
+
 
 @app.context_processor
 def inject_view_args():

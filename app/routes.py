@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, g
+from flask import render_template, flash, redirect, url_for, request, g, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
 from urllib.parse import urlsplit
@@ -7,6 +7,10 @@ from datetime import datetime, timezone
 from app import app, db, photos
 from app.models import User, Post, Image
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
+
+@app.context_processor
+def inject_timezone():
+    return dict(timezone=timezone, datetime=datetime)
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
@@ -98,7 +102,20 @@ def before_request():
         g.locale = str(get_locale())
 
 
-            
+@app.route('/profile/generate-token', methods=['POST'])
+@login_required
+def generate_api_token():
+    token = current_user.get_token()
+    db.session.commit()
+    return jsonify({'token': token})
+
+@app.route('/profile/revoke-token', methods=['POST'])
+@login_required
+def revoke_api_token():
+    current_user.revoke_token()
+    db.session.commit()
+    flash(_('Token revoked.'))
+    return redirect(url_for('user', username=current_user.username))
 
 
 @app.route('/new_post', methods=['GET', 'POST'])
@@ -117,7 +134,7 @@ def new_post():
 
         if form.image.data:
             filename = photos.save(form.image.data)
-            url = f"/static/uploads/{filename}"
+            url = f"/static/images/{filename}"
             image = Image(url=url, caption=filename, post=post)
             db.session.add(image)
         elif form.image_url.data:

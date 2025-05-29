@@ -9,6 +9,12 @@ seed_data = {
             "about_me": "Python разработчик. Пишу о веб-разработке, Flask, SQLAlchemy и автоматизации."
         },
         {
+            "username": "sindik",
+            "email": "sindik@example.com",
+            "password": "1861",
+            "about_me": "Abra cadabra. Пу-пу-пу."
+        },
+        {
             "username": "jane_smith",
             "email": "jane@example.com",
             "password": "password",
