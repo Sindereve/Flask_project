@@ -73,17 +73,18 @@
                     {{ _('Logout') }}
                 </a>
             {% endif %}
-            <!-- Выбор языка -->
             
+            <!-- Выбор языка -->
             <div class="relative">
-                <select id="language-select" class="block appearance-none bg-white border border-gray-300 rounded-md py-2 px-3 pr-8 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    {% for lang in ['en', 'ru'] %}
+                <select id="language-select" 
+                            class="block appearance-none w-full bg-white border border-gray-300 hover:border-indigo-400 rounded-md py-2 px-3 pr-10 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 ease-in-out text-sm sm:text-base">
+                    {% for lang in ['en', 'ru', 'de'] %}
                         <option value="{{ lang }}" {% if session.get('language') == lang or (not session.get('language') and loop.first) %}selected{% endif %}>
                             {{ lang | upper }}
                         </option>
                     {% endfor %}
                 </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-600">
                     <i class="fas fa-globe"></i>
                 </div>
             </div>

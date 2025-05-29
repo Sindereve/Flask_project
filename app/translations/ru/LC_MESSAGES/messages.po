@@ -7,13 +7,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-29 18:21+0500\n"
-"PO-Revision-Date: 2025-05-25 23:12+0500\n"
+"POT-Creation-Date: 2025-05-29 18:54+0500\n"
+"PO-Revision-Date: 2025-05-29 18:54+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +20,7 @@ msgstr ""
 
 #: app/forms.py:11 app/forms.py:17 app/forms.py:38
 msgid "Username"
-msgstr "Имя"
+msgstr "Имя пользователя"
 
 #: app/forms.py:12 app/forms.py:19
 msgid "Password"
@@ -29,11 +28,11 @@ msgstr "Пароль"
 
 #: app/forms.py:13
 msgid "Remember Me"
-msgstr "Запомни меня"
+msgstr "Запомнить меня"
 
 #: app/forms.py:14 app/templates/login.html:7 app/templates/register.html:94
 msgid "Sign In"
-msgstr "Авторизация"
+msgstr "Войти"
 
 #: app/forms.py:18
 msgid "Email"
@@ -45,19 +44,19 @@ msgstr "Повторите пароль"
 
 #: app/forms.py:21 app/templates/register.html:7
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрироваться"
 
 #: app/forms.py:28 app/forms.py:53
 msgid "Please use a different username."
-msgstr "Пожалуйста, используйте другое имя пользователя"
+msgstr "Пожалуйста, используйте другое имя пользователя."
 
 #: app/forms.py:35
 msgid "Please use a different email address."
-msgstr "Пожалуйста, используйте другой email"
+msgstr "Пожалуйста, используйте другой адрес электронной почты."
 
 #: app/forms.py:39
 msgid "About me"
-msgstr "обо мне"
+msgstr "Обо мне"
 
 #: app/forms.py:40 app/forms.py:57
 msgid "Submit"
@@ -77,10 +76,9 @@ msgstr "Загрузить изображение"
 
 #: app/forms.py:70 app/templates/new_post.html:97
 msgid "Or paste image URL here"
-msgstr "Или вставьте ссылку на изображение"
+msgstr "Или вставьте ссылку на изображение сюда"
 
 #: app/forms.py:72
-#, fuzzy
 msgid "Invalid URL format"
 msgstr "Неверный формат URL"
 
@@ -90,19 +88,19 @@ msgstr "Опубликовать"
 
 #: app/routes.py:51
 msgid "Invalid username or password"
-msgstr "Невеное имя пользователя или пароль"
+msgstr "Неверное имя пользователя или пароль"
 
 #: app/routes.py:76
 msgid "You are a registered user!"
-msgstr "Вы уже регистрировались!"
+msgstr "Вы уже зарегистрированы!"
 
 #: app/routes.py:110
 msgid "Create token."
-msgstr "Создать токен"
+msgstr "Создать токен."
 
 #: app/routes.py:118
 msgid "Token revoked."
-msgstr "Удаление токена"
+msgstr "Токен отозван."
 
 #: app/routes.py:146
 msgid "Post created successfully!"
@@ -119,7 +117,7 @@ msgstr "Пользователь %(username)s не найден."
 
 #: app/routes.py:176
 msgid "You cannot follow yourself!"
-msgstr "Вы не можете подписаться на себя"
+msgstr "Вы не можете подписаться на себя!"
 
 #: app/routes.py:180
 #, python-format
@@ -128,12 +126,12 @@ msgstr "Вы подписались на %(username)s!"
 
 #: app/routes.py:195
 msgid "You cannot unfollow yourself!"
-msgstr "Вы не можете отказаться от подписки на себя!"
+msgstr "Вы не можете отписаться от себя!"
 
 #: app/routes.py:199
 #, python-format
 msgid "You are unfollowing %(username)s!"
-msgstr "Вы отписались от %(username)s!"
+msgstr "Вы отписываетесь от %(username)s!"
 
 #: app/templates/404.html:17
 msgid "The page you are looking for does not exist."
@@ -141,31 +139,27 @@ msgstr "Запрашиваемая страница не существует."
 
 #: app/templates/404.html:26 app/templates/500.html:30
 msgid "Back to Home"
-msgstr "Вернуться на главную"
+msgstr "На главную"
 
 #: app/templates/500.html:17
-#, fuzzy
 msgid "An unexpected error has occurred."
-msgstr "Произошла непредвиденная ошибка"
+msgstr "Произошла непредвиденная ошибка."
 
 #: app/templates/500.html:21
 msgid "The administrator has been notified. Sorry for the inconvenience!"
-msgstr ""
-"Администратор был уведомлен. Приносим извинения за доставленные "
-"неудобства!"
+msgstr "Администратор был уведомлен. Приносим извинения за доставленные неудобства!"
 
 #: app/templates/base.html:142
 msgid "Да, у меня есть политика"
-msgstr "Да, у меня есть политика"
+msgstr "Да, у меня есть политика конфиденциальности"
 
 #: app/templates/edit_profile.html:8 app/templates/user_profile.html:48
 msgid "Edit Profile"
-msgstr "Изменение профиля"
+msgstr "Редактировать профиль"
 
 #: app/templates/edit_profile.html:65
-#, fuzzy
 msgid "Back to Profile"
-msgstr "Изменение профиля"
+msgstr "Назад к профилю"
 
 #: app/templates/header_base.html:22
 msgid "Home"
@@ -173,7 +167,7 @@ msgstr "Главная"
 
 #: app/templates/header_base.html:32
 msgid "Login"
-msgstr "Войти"
+msgstr "Вход"
 
 #: app/templates/header_base.html:47
 msgid "Profile"
@@ -184,9 +178,8 @@ msgid "Explore"
 msgstr "Поиск"
 
 #: app/templates/header_base.html:73
-#, fuzzy
 msgid "Logout"
-msgstr "Выйти"
+msgstr "Выход"
 
 #: app/templates/index.html:20 app/templates/user.html:100
 msgid "Newer posts"
@@ -204,7 +197,7 @@ msgstr "Новый пользователь?"
 msgid "Click to Register!"
 msgstr "Нажмите для регистрации!"
 
-#: app/templates/new_post.html:8
+#: app.templates/new_post.html:8
 msgid "Write a new article"
 msgstr "Написать новую статью"
 
@@ -213,7 +206,7 @@ msgid "Already have an account?"
 msgstr "Уже есть аккаунт?"
 
 #: app/templates/user.html:11
-#, fuzzy, python-format
+#, python-format
 msgid "Posts by %(username)s"
 msgstr "Посты пользователя %(username)s"
 
@@ -222,22 +215,18 @@ msgid "Show Stats"
 msgstr "Показать статистику"
 
 #: app/templates/user.html:32
-#, fuzzy
 msgid "New Post"
 msgstr "Новый пост"
 
 #: app/templates/user.html:52
-#, fuzzy
 msgid "Followers"
 msgstr "Подписчики"
 
 #: app.templates/user.html:58
-#, fuzzy
 msgid "Following"
 msgstr "Подписки"
 
-#: app/templates/user.html:64
-#, fuzzy
+#: app.templates/user.html:64
 msgid "Posts"
 msgstr "Посты"
 
@@ -245,23 +234,23 @@ msgstr "Посты"
 msgid "Copy token"
 msgstr "Скопировать токен"
 
-#: app/templates/user_profile.html:10
+#: app.templates/user_profile.html:10
 msgid "Сopy error"
 msgstr "Ошибка копирования"
 
-#: app/templates/user_profile.html:34
+#: app.templates/user_profile.html:34
 msgid "Last seen on:"
 msgstr "Последний раз в сети:"
 
-#: app/templates/user_profile.html:61
+#: app.templates/user_profile.html:61
 msgid "Expires on:"
 msgstr "Истекает:"
 
-#: app/templates/user_profile.html:72
+#: app.templates/user_profile.html:72
 msgid "Revoke token"
 msgstr "Отозвать токен"
 
-#: app/templates/user_profile.html:85
+#: app.templates/user_profile.html:85
 msgid "Generate Token"
 msgstr "Создать токен"
 
@@ -272,22 +261,3 @@ msgstr "Подписаться"
 #: app.templates/user_profile.html:112
 msgid "Unfollow"
 msgstr "Отписаться"
-
-#~ msgid "Say something"
-#~ msgstr "Написать что-то"
-
-#~ msgid "Your post is now live!"
-#~ msgstr "Ваш пост опубликован!"
-
-#~ msgid "File Not Found"
-#~ msgstr "Файл не найден"
-
-#~ msgid "says:"
-#~ msgstr "написал:"
-
-#~ msgid "Navigate:"
-#~ msgstr "Навигация"
-
-#~ msgid "Edit your profile"
-#~ msgstr "Изменить профиль"
-
