@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, session
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -12,6 +12,8 @@ from logging.handlers import RotatingFileHandler  # ,SMTPHandler (добавит
 
 
 def get_locale():
+    if 'language' in session:
+        return session['language']
     return request.accept_languages.best_match(app.config['LANGUAGES'])
     # return 'en'
 

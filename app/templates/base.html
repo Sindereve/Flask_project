@@ -36,6 +36,21 @@
         .nav-link:hover {
             color: #667eea !important;
         }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-slide {
+            animation: slideDown 0.3s ease-out forwards;
+        }
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -129,13 +144,54 @@
     </footer>
 
     <script>
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                alert("✅ Токен скопирован в буфер обмена");
-            }, function(err) {
-                alert("❌ Не удалось скопировать токен: " + err);
-            });
+        function showToast(toastId, message = '', isError = false) {
+            const toast = document.getElementById(toastId);
+            const messageElement = isError ? document.getElementById("error-message") : toast.querySelector("span");
+
+            if (message) {
+                messageElement.textContent = message;
+            }
+
+            // Показываем уведомление
+            toast.classList.remove("hidden", "opacity-0");
+            toast.classList.add("opacity-100");
+
+            // Скрываем через 2 секунды
+            setTimeout(() => {
+                toast.classList.remove("opacity-100");
+                toast.classList.add("opacity-0");
+            }, 2000);
         }
+
+        function hideAllToasts() {
+            document.getElementById("success-toast").classList.add("hidden", "opacity-0");
+            document.getElementById("error-toast").classList.add("hidden", "opacity-0");
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    showToast("success-toast", "Токен скопирован")
+                })
+                .catch(err => {
+                    showToast("error-toast", "Ошибка: " + err, true)
+                });
+        }
+
+        // Скрыть все уведомления при клике вне их области
+        document.addEventListener("click", function(event) {
+            if (!event.target.closest("#success-toast") && !event.target.closest("#error-toast")) {
+                hideAllToasts();
+            }
+        });
     </script>
+
+    <script>
+        document.getElementById('language-select').addEventListener('change', function() {
+            const selectedLang = this.value;
+            window.location.href = `{{ url_for('set_language', lang='__LANG__') }}`.replace('__LANG__', selectedLang);
+        });
+    </script>
+    
 </body>
 </html>

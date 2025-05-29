@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, g, jsonify
+from flask import render_template, flash, redirect, url_for, request, g, jsonify, session
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
 from urllib.parse import urlsplit
@@ -107,7 +107,8 @@ def before_request():
 def generate_api_token():
     token = current_user.get_token()
     db.session.commit()
-    return jsonify({'token': token})
+    flash(_('Create token.'))
+    return redirect(url_for('user', username=current_user.username))
 
 @app.route('/profile/revoke-token', methods=['POST'])
 @login_required
@@ -199,3 +200,19 @@ def unfollow(username):
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
+    
+
+@app.route('/set-lang/<lang>')
+def set_language(lang):
+    if lang in app.config['LANGUAGES']:
+        session['language'] = lang
+    resp = redirect(request.referrer or url_for('index'))
+    resp.set_cookie('language', lang, max_age=60*60*24*30)  # 30 дней
+    return resp
+
+@app.context_processor
+def inject_lang():
+    return {
+        'current_lang': session.get('language', 'en')
+    }
+

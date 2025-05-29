@@ -7,10 +7,14 @@ class Config:
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
     POSTS_PER_PAGE = 10
     
-    LANGUAGES = ['en', 'ru']
+    LANGUAGES = ['en', 'ru', 'de']  # Поддерживаемые языки
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_TRANSLATION_DIRECTORIES = 'translations'
+    
     UPLOADED_PHOTOS_DEST = os.path.join(basedir, 'app/static/images')  
     UPLOADED_PHOTOS_ALLOW = ['jpg', 'jpeg', 'png', 'gif']
-
+    WTF_CSRF_ENABLED = True
+    WTF_CSRF_TIME_LIMIT = None
     # параметры для отправки инфо об ошибке на email
     # MAIL_SERVER = os.environ.get('MAIL_SERVER')
     # MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)

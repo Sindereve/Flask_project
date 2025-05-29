@@ -1,3 +1,16 @@
+<!-- Уведомление об успехе -->
+<div id="success-toast" class="hidden fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center z-50 transition-opacity duration-300">
+    <i class="fas fa-check-circle mr-2"></i>
+    <span>{{ _('Copy token') }}</span>
+</div>
+
+<!-- Уведомление об ошибке -->
+<div id="error-toast" class="hidden fixed bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center z-50 transition-opacity duration-300">
+    <i class="fas fa-exclamation-circle mr-2"></i>
+    <span id="error-message">{{ _('Сopy error') }}</span>
+</div>
+
+
 <div class="max-w-3xl mx-auto mb-10 bg-white rounded-xl shadow-md p-6 transition-all duration-300 hover:shadow-lg">
         <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-6">
             <!-- Аватар -->
@@ -38,19 +51,7 @@
                             </button>
                         </form>
                  
-                        <!-- Кнопка генерации токена -->
-                        <form action="{{ url_for('generate_api_token') }}" method="POST" class="mb-3">
-                            {{ form.hidden_tag() }}
-                            <button type="submit" 
-                                    class="relative inline-flex items-center px-4 py-2 rounded-full text-white font-medium overflow-hidden group">
-                                <span class="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-600"></span>
-                                <span class="relative z-10 flex items-center">
-                                    <i class="fas fa-key mr-2"></i> {{ _('Generate Token') }}
-                                </span>
-                                <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
-                            </button>
-                        </form>
-
+                        
                         <!-- Отображение токена -->
                         {% if user.token and user.token_expiration.replace(tzinfo=timezone.utc) > datetime.now(timezone.utc) %}
                             <div class="bg-gray-50 p-4 rounded-lg text-sm border border-gray-200">
@@ -64,6 +65,7 @@
                                             class="text-sm text-blue-600 hover:underline">
                                         {{ _('Copy token') }}
                                     </button>
+
                                     <form action="{{ url_for('revoke_api_token') }}" method="POST" class="mb-0">
                                         {{ form.hidden_tag() }}
                                         <button type="submit" class="text-sm text-red-600 hover:underline">
@@ -73,7 +75,19 @@
                                 </div>
                             </div>
                         {% else %}
-                            <p class="text-gray-500 italic">{{ _('No active token') }}</p>
+                            <!-- Кнопка генерации токена -->    
+                            <form action="{{ url_for('generate_api_token') }}" method="POST" class="mb-3">
+                                {{ form.hidden_tag() }}
+                                <button type="submit" 
+                                        class="relative inline-flex items-center px-4 py-2 rounded-full text-white font-medium overflow-hidden group">
+                                    <span class="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-600"></span>
+                                    <span class="relative z-10 flex items-center">
+                                        <i class="fas fa-key mr-2"></i> {{ _('Generate Token') }}
+                                    </span>
+                                    <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
+                                </button>
+                            </form>
+
                         {% endif %}
 
                     {% elif not current_user.is_following(user) %}
