@@ -47,25 +47,56 @@ pip install -r requirements.txt
 flask run
 ```
 
- ## Изображения
+ ## Скринщоты
+<div align="center">
 
-Авторизация
-![image](https://github.com/user-attachments/assets/6fe796aa-3ebf-455a-b436-d4cf13fbbbab)
+<h2>Авторизация</h2>
+<p>Вход в учетную запись</p>
+<img src="https://github.com/user-attachments/assets/95766699-c0af-4cf2-aa67-7c7765d08dcc"  width="800" />
 
-Регистрация
-![image](https://github.com/user-attachments/assets/1d0b3ff9-6971-4f9a-9657-3b7c1a074a90)
+</div>
 
-Домашняя страница(ваши посты и посты людей, на кого оформлена подписка)
-![Home](https://github.com/user-attachments/assets/16ffe70c-0c0b-4dfa-8f2b-073e39b79c57)
+<div align="center">
 
-Профиль пользователя
-![My_profile](https://github.com/user-attachments/assets/398ea03a-7907-4a37-ab71-a61b7fc4f04b)
+<h2>Регистрация</h2>
+<p>Создание новой учетной записи</p>
+<img src="https://github.com/user-attachments/assets/1a5487c5-840d-4a51-81af-0d59aebfda2b"  width="800" />
 
-Посты всех пользователей 
-![Explore](https://github.com/user-attachments/assets/b7c84d2e-937d-4b9d-a619-883458c6f7fb)
+</div>
 
-Пример с другой локализацией 
-![Ru_profile](https://github.com/user-attachments/assets/fe33413a-ef74-46ef-9c45-091be032f287)
-![De_profile](https://github.com/user-attachments/assets/a040701f-0a64-4ff3-9658-cadce9a38a9e)
+<div align="center">
+
+<h2>Домашняя страница</h2>
+<p>Посты пользователя и тех, на кого оформлены подписки</p>
+<img src="https://github.com/user-attachments/assets/0b01986d-7a9e-4812-8173-96b2df9ca274"  width="800" />
+<img src="https://github.com/user-attachments/assets/7d277a55-576c-4280-8e7b-d76d8adba195"  width="800" />
+
+</div>
+
+<div align="center">
+
+<h2>Профиль пользователя</h2>
+<p>Отображение информации о пользователе (токен, статистика, посты)</p>
+<img src="https://github.com/user-attachments/assets/ebdde5a4-f725-4657-aaf0-aaa0f12e6896"  width="800" />
+
+</div>
+
+<div align="center">
+
+<h2>Все посты</h2>
+<p>Просмотр всех существующих постов</p>
+<img src="https://github.com/user-attachments/assets/a4175956-843b-42e2-bc58-5d08aeebfcf8"  width="800" />
+
+</div>
+
+<div align="center">
+
+<h2>Примеры локализации</h2>
+<p>Интерфейс на русском и немецком языках</p>
+<img src="https://github.com/user-attachments/assets/bda7a064-b8eb-4652-9eba-0bb8860cc172"  width="800" />
+<img src="https://github.com/user-attachments/assets/29cc9e0a-22c4-4f1d-b59c-0cb1973cb295"  width="800" />
+
+</div>
+
 
 
