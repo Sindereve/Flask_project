@@ -20,7 +20,6 @@
 * python 3.10.x
 * больше информации найдёте в файле requirements.txt
 
-
 ---
 
  ## 🛠️ Установка и запуск
@@ -47,56 +46,43 @@ pip install -r requirements.txt
 flask run
 ```
 
- ## Скринщоты
+ ## Скриншоты (2560x1440)
+
 <div align="center">
-
-<h2>Авторизация</h2>
-<p>Вход в учетную запись</p>
-<img src="https://github.com/user-attachments/assets/95766699-c0af-4cf2-aa67-7c7765d08dcc"  width="800" />
-
+ <h2>Авторизация</h2>
+ <p>Вход в учетную запись</p>
+ <img src="https://github.com/user-attachments/assets/95766699-c0af-4cf2-aa67-7c7765d08dcc"  width="800" />
 </div>
 
 <div align="center">
-
-<h2>Регистрация</h2>
-<p>Создание новой учетной записи</p>
-<img src="https://github.com/user-attachments/assets/1a5487c5-840d-4a51-81af-0d59aebfda2b"  width="800" />
-
+ <h2>Регистрация</h2>
+ <p>Создание новой учетной записи</p>
+ <img src="https://github.com/user-attachments/assets/1a5487c5-840d-4a51-81af-0d59aebfda2b"  width="800" />
 </div>
 
 <div align="center">
-
-<h2>Домашняя страница</h2>
-<p>Посты пользователя и тех, на кого оформлены подписки</p>
-<img src="https://github.com/user-attachments/assets/0b01986d-7a9e-4812-8173-96b2df9ca274"  width="800" />
-<img src="https://github.com/user-attachments/assets/7d277a55-576c-4280-8e7b-d76d8adba195"  width="800" />
-
+ <h2>Домашняя страница</h2>
+ <p>Посты пользователя и тех, на кого оформлены подписки</p>
+ <img src="https://github.com/user-attachments/assets/0b01986d-7a9e-4812-8173-96b2df9ca274"  width="800" />
+ <img src="https://github.com/user-attachments/assets/7d277a55-576c-4280-8e7b-d76d8adba195"  width="800" />
 </div>
 
 <div align="center">
-
-<h2>Профиль пользователя</h2>
-<p>Отображение информации о пользователе (токен, статистика, посты)</p>
-<img src="https://github.com/user-attachments/assets/ebdde5a4-f725-4657-aaf0-aaa0f12e6896"  width="800" />
-
+ <h2>Профиль пользователя</h2>
+ <p>Отображение информации о пользователе (токен, статистика, посты)</p>
+ <img src="https://github.com/user-attachments/assets/ebdde5a4-f725-4657-aaf0-aaa0f12e6896"  width="800" />
 </div>
 
 <div align="center">
-
-<h2>Все посты</h2>
-<p>Просмотр всех существующих постов</p>
-<img src="https://github.com/user-attachments/assets/a4175956-843b-42e2-bc58-5d08aeebfcf8"  width="800" />
-
+ <h2>Все посты</h2>
+ <p>Просмотр всех существующих постов</p>
+ <img src="https://github.com/user-attachments/assets/a4175956-843b-42e2-bc58-5d08aeebfcf8"  width="800" />
 </div>
 
 <div align="center">
-
-<h2>Примеры локализации</h2>
-<p>Интерфейс на русском и немецком языках</p>
-<img src="https://github.com/user-attachments/assets/bda7a064-b8eb-4652-9eba-0bb8860cc172"  width="800" />
-<img src="https://github.com/user-attachments/assets/29cc9e0a-22c4-4f1d-b59c-0cb1973cb295"  width="800" />
-
+ <h2>Примеры локализации</h2>
+ <p>Интерфейс на русском и немецком языках</p>
+ <img src="https://github.com/user-attachments/assets/bda7a064-b8eb-4652-9eba-0bb8860cc172"  width="800" />
+ <img src="https://github.com/user-attachments/assets/29cc9e0a-22c4-4f1d-b59c-0cb1973cb295"  width="800" />
 </div>
-
-
 
