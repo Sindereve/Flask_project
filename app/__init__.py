@@ -2,6 +2,7 @@ from flask import Flask, request, session
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager
 from flask_moment import Moment
 from flask_babel import Babel
@@ -25,7 +26,7 @@ photos = UploadSet('photos', IMAGES)
 configure_uploads(app, photos)
 upload_folder = app.config['UPLOADED_PHOTOS_DEST']
 os.makedirs(upload_folder, exist_ok=True)
-
+csrf = CSRFProtect(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 

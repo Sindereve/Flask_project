@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}{{ _('Edit post') }}{% endblock %}
+
+{% block content %}
+  <div class="flex justify-center items-center min-h-[calc(100vh-16rem)]">
+    <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-8 space-y-6 transition-all duration-300 hover:shadow-xl">
+
+      <h1 class="text-2xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-500">
+        {{ _('Edit post') }}
+      </h1>
+
+      <!-- Отображение текущего изображения -->
+      {% if post.images %}
+        <div class="mb-4 text-center">
+          <img src="{{ post.images[0].url }}" alt="{{ post.images[0].caption }}" class="mx-auto max-h-64 rounded-lg shadow-md">
+        </div>
+      {% endif %}
+
+      <!-- Форма -->
+      <form method="POST" enctype="multipart/form-data" novalidate class="space-y-6">
+        {{ form.hidden_tag() }}
+
+        <!-- Заголовок -->
+        <div class="space-y-1">
+          {{ form.title.label(class="block text-sm font-medium text-gray-700") }}
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+              <i class="fas fa-heading"></i>
+            </div>
+            {{ form.title(class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-shadow outline-none") }}
+          </div>
+          {% if form.title.errors %}
+            {% for error in form.title.errors %}
+              <span class="text-red-500 text-sm">{{ error }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <!-- Текст статьи -->
+        <div class="space-y-1">
+          {{ form.body.label(class="block text-sm font-medium text-gray-700") }}
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 pt-2 flex items-center pointer-events-none text-gray-400">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+            {{ form.body(
+              class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-shadow outline-none resize-none",
+              rows=1,
+              style="height: auto; min-height: 60px;",
+              oninput="autoResize(this)"
+            ) }}
+          </div>
+          {% if form.body.errors %}
+            {% for error in form.body.errors %}
+              <span class="text-red-500 text-sm">{{ error }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <!-- Загрузка нового изображения -->
+        <div class="space-y-1">
+          {{ form.image.label(class="block text-sm font-medium text-gray-700") }}
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+              <i class="fas fa-upload"></i>
+            </div>
+            {{ form.image(class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-300 focus:border-purple-500 transition-shadow outline-none") }}
+          </div>
+          <p class="text-xs text-gray-500 mt-1">
+            {{ _('Formats: jpg, jpeg, png') }}
+          </p>
+          {% if form.image.errors %}
+            {% for error in form.image.errors %}
+              <span class="text-red-500 text-sm">{{ error }}</span>
+            {% endfor %}
+          {% endif %}
+        </div>
+
+        <!-- Скрипт авто-высоты -->
+        <script>
+          function autoResize(textarea) {
+            textarea.style.height = 'auto'; 
+            textarea.style.height = Math.min(textarea.scrollHeight, 300) + 'px'; 
+          }
+
+          document.addEventListener('DOMContentLoaded', () => {
+            const textarea = document.querySelector('textarea[name="body"]');
+            if (textarea) {
+              textarea.style.height = textarea.scrollHeight + 'px';
+            }
+          });
+        </script>
+
+        <!-- Кнопка отправки -->
+        <div class="text-center">
+          <button type="submit"
+                  class="relative w-full inline-flex items-center justify-center px-4 py-2 rounded-full text-white font-medium overflow-hidden group">
+            <span class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500"></span>
+            <span class="relative z-10 flex items-center">
+              {{ _('Save changes') }}
+              <i class="fas fa-save ml-2"></i>
+            </span>
+            <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

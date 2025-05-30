@@ -72,3 +72,16 @@ class PostForm(FlaskForm):
         URL(message=_l('Invalid URL format'))
     ])
     submit = SubmitField(_l('Publish'))
+
+class PostFormChange(FlaskForm):
+    title = StringField(
+        _l('Title'),
+        validators=[DataRequired(), Length(max=255)]
+    )
+    body = TextAreaField(
+        _l('Body'),
+        validators=[DataRequired()]
+    )
+    image = FileField(_l('Upload Image'),validators=[
+        Optional()])
+    submit = SubmitField(_l('Submit'))

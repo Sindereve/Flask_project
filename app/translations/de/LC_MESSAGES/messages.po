@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-05-29 18:54+0500\n"
+"POT-Creation-Date: 2025-05-30 21:32+0500\n"
 "PO-Revision-Date: 2025-05-29 18:54+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: de\n"
@@ -58,19 +58,19 @@ msgstr "Bitte verwenden Sie eine andere E-Mail-Adresse."
 msgid "About me"
 msgstr "Über mich"
 
-#: app/forms.py:40 app/forms.py:57
+#: app/forms.py:40 app/forms.py:57 app/forms.py:87
 msgid "Submit"
 msgstr "Absenden"
 
-#: app/forms.py:61
+#: app/forms.py:61 app/forms.py:78
 msgid "Title"
 msgstr "Titel"
 
-#: app/forms.py:65
+#: app/forms.py:65 app/forms.py:82
 msgid "Body"
 msgstr "Inhalt"
 
-#: app/forms.py:68
+#: app/forms.py:68 app/forms.py:85
 msgid "Upload Image"
 msgstr "Bild hochladen"
 
@@ -102,162 +102,215 @@ msgstr "Token erstellen."
 msgid "Token revoked."
 msgstr "Token widerrufen."
 
-#: app.routes.py:146
+#: app/routes.py:146
 msgid "Post created successfully!"
 msgstr "Beitrag erfolgreich erstellt!"
 
-#: app.routes.py:159
+#: app/routes.py:159
 msgid "Your changes have been saved."
 msgstr "Ihre Änderungen wurden gespeichert."
 
-#: app.routes.py:173 app.routes.py:192
+#: app/routes.py:173 app/routes.py:192
 #, python-format
 msgid "User %(username)s not found."
 msgstr "Benutzer %(username)s nicht gefunden."
 
-#: app.routes.py:176
+#: app/routes.py:176
 msgid "You cannot follow yourself!"
 msgstr "Sie können sich nicht selbst folgen!"
 
-#: app.routes.py:180
+#: app/routes.py:180
 #, python-format
 msgid "You are following %(username)s!"
 msgstr "Sie folgen %(username)s!"
 
-#: app.routes.py:195
+#: app/routes.py:195
 msgid "You cannot unfollow yourself!"
 msgstr "Sie können sich nicht selbst entfolgen!"
 
-#: app.routes.py:199
+#: app/routes.py:199
 #, python-format
 msgid "You are unfollowing %(username)s!"
 msgstr "Sie entfolgen %(username)s!"
 
-#: app.templates/404.html:17
+#: app/routes.py:226
+msgid "You cannot edit this post."
+msgstr "Sie können diesen Beitrag nicht bearbeiten."
+
+#: app/routes.py:246
+#, fuzzy
+msgid "The post has been updated successfully."
+msgstr "Beitrag erfolgreich erstellt!"
+
+#: app/routes.py:263
+msgid "You cannot delete another user's post"
+msgstr "Sie können den Beitrag eines anderen Benutzers nicht löschen"
+
+#: app/routes.py:273
+#, fuzzy
+msgid "Post and related images successfully deleted"
+msgstr "Beitrag erfolgreich erstellt!"
+
+#: app/routes.py:276
+msgid "An error occurred while deleting the post: "
+msgstr "Beim Löschen des Beitrags ist ein Fehler aufgetreten: "
+
+#: app/templates/404.html:17
 msgid "The page you are looking for does not exist."
 msgstr "Die von Ihnen gesuchte Seite existiert nicht."
 
-#: app.templates/404.html:26 app.templates/500.html:30
+#: app/templates/404.html:26 app/templates/500.html:30
 msgid "Back to Home"
 msgstr "Zurück zur Startseite"
 
-#: app.templates/500.html:17
+#: app/templates/500.html:17
 msgid "An unexpected error has occurred."
 msgstr "Ein unerwarteter Fehler ist aufgetreten."
 
-#: app.templates/500.html:21
+#: app/templates/500.html:21
 msgid "The administrator has been notified. Sorry for the inconvenience!"
 msgstr "Der Administrator wurde benachrichtigt. Wir bitten um Entschuldigung für die Unannehmlichkeiten!"
 
-#: app.templates/base.html:142
+#: app/templates/_post.html:58
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: app/templates/_post.html:71
+msgid "Delete"
+msgstr "Löschen"
+
+#: app/templates/base.html:146
 msgid "Да, у меня есть политика"
 msgstr "Ja, ich habe eine Datenschutzerklärung"
 
-#: app.templates/edit_profile.html:8 app.templates/user_profile.html:48
+#: app/templates/edit_post.html:2 app/templates/edit_post.html:9
+#, fuzzy
+msgid "Edit post"
+msgstr "Neuer Beitrag"
+
+#: app/templates/edit_post.html:70
+msgid "Formats: jpg, jpeg, png"
+msgstr "Formate: jpg, jpeg, png"
+
+#: app/templates/edit_post.html:100
+msgid "Save changes"
+msgstr "Änderungen speichern"
+
+#: app/templates/edit_profile.html:8 app/templates/user_profile.html:48
 msgid "Edit Profile"
 msgstr "Profil bearbeiten"
 
-#: app.templates/edit_profile.html:65
+#: app/templates/edit_profile.html:65
 msgid "Back to Profile"
 msgstr "Zurück zum Profil"
 
-#: app.templates/header_base.html:22
+#: app/templates/header_base.html:22
 msgid "Home"
 msgstr "Startseite"
 
-#: app.templates/header_base.html:32
+#: app/templates/header_base.html:32
 msgid "Login"
 msgstr "Anmelden"
 
-#: app.templates/header_base.html:47
+#: app/templates/header_base.html:47
 msgid "Profile"
 msgstr "Profil"
 
-#: app.templates/header_base.html:60
+#: app/templates/header_base.html:60
 msgid "Explore"
 msgstr "Entdecken"
 
-#: app.templates/header_base.html:73
+#: app/templates/header_base.html:73
 msgid "Logout"
 msgstr "Abmelden"
 
-#: app.templates/index.html:20 app.templates/user.html:100
+#: app/templates/index.html:20 app/templates/user.html:100
 msgid "Newer posts"
 msgstr "Neuere Beiträge"
 
-#: app.templates/index.html:30 app.templates/user.html:90
+#: app/templates/index.html:30 app/templates/user.html:90
 msgid "Older posts"
 msgstr "Ältere Beiträge"
 
-#: app.templates/login.html:57
+#: app/templates/login.html:57
 msgid "New User?"
 msgstr "Neuer Benutzer?"
 
-#: app.templates/login.html:60
+#: app/templates/login.html:60
 msgid "Click to Register!"
 msgstr "Klicken Sie hier, um sich zu registrieren!"
 
-#: app.templates/new_post.html:8
+#: app/templates/new_post.html:8
 msgid "Write a new article"
 msgstr "Einen neuen Artikel schreiben"
 
-#: app.templates/register.html:91
+#: app/templates/post_detail.html:36
+#, fuzzy
+msgid "Go home"
+msgstr "Startseite"
+
+#: app/templates/post_detail.html:41
+msgid "Change"
+msgstr "Ändern"
+
+#: app/templates/register.html:91
 msgid "Already have an account?"
 msgstr "Sie haben bereits ein Konto?"
 
-#: app.templates/user.html:11
+#: app/templates/user.html:11
 #, python-format
 msgid "Posts by %(username)s"
 msgstr "Beiträge von %(username)s"
 
-#: app.templates/user.html:22
+#: app/templates/user.html:22
 msgid "Show Stats"
 msgstr "Statistiken anzeigen"
 
-#: app.templates.user.html:32
+#: app/templates/user.html:32
 msgid "New Post"
 msgstr "Neuer Beitrag"
 
-#: app.templates/user.html:52
+#: app/templates/user.html:52
 msgid "Followers"
 msgstr "Follower"
 
-#: app.templates/user.html:58
+#: app/templates/user.html:58
 msgid "Following"
 msgstr "Folgt"
 
-#: app.templates/user.html:64
+#: app/templates/user.html:64
 msgid "Posts"
 msgstr "Beiträge"
 
-#: app.templates/user_profile.html:4 app.templates/user_profile.html:66
+#: app/templates/user_profile.html:4 app/templates/user_profile.html:66
 msgid "Copy token"
 msgstr "Token kopieren"
 
-#: app.templates/user_profile.html:10
+#: app/templates/user_profile.html:10
 msgid "Сopy error"
 msgstr "Fehler beim Kopieren"
 
-#: app.templates/user_profile.html:34
+#: app/templates/user_profile.html:34
 msgid "Last seen on:"
 msgstr "Zuletzt online am:"
 
-#: app.templates/user_profile.html:61
+#: app/templates/user_profile.html:61
 msgid "Expires on:"
 msgstr "Läuft ab am:"
 
-#: app.templates/user_profile.html:72
+#: app/templates/user_profile.html:72
 msgid "Revoke token"
 msgstr "Token widerrufen"
 
-#: app.templates/user_profile.html:85
+#: app/templates/user_profile.html:85
 msgid "Generate Token"
 msgstr "Token generieren"
 
-#: app.templates/user_profile.html:100
+#: app/templates/user_profile.html:100
 msgid "Follow"
 msgstr "Folgen"
 
-#: app.templates/user_profile.html:112
+#: app/templates/user_profile.html:112
 msgid "Unfollow"
 msgstr "Entfolgen"
+

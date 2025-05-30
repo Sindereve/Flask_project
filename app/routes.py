@@ -1,12 +1,13 @@
-from flask import render_template, flash, redirect, url_for, request, g, jsonify, session
+from flask import render_template, flash, redirect, url_for, request, g, jsonify, session, current_app
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_babel import _, get_locale
 from urllib.parse import urlsplit
 import sqlalchemy as sa
+import os
 from datetime import datetime, timezone
 from app import app, db, photos
 from app.models import User, Post, Image
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, PostForm, PostFormChange
 
 @app.context_processor
 def inject_timezone():
@@ -216,3 +217,68 @@ def inject_lang():
         'current_lang': session.get('language', 'en')
     }
 
+
+@app.route('/post/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_post(id):
+    post = Post.query.get_or_404(id)
+
+    if post.author.id != current_user.id:
+        flash(_('You cannot edit this post.'))
+        return redirect(url_for('index'))
+
+    form = PostForm(obj=post)
+
+    if form.validate_on_submit():
+        form.populate_obj(post)
+
+
+        if form.image.data:
+
+            for image in post.images:
+                db.session.delete(image)
+
+            filename = photos.save(form.image.data)
+            url = f"/static/images/{filename}"
+            new_image = Image(url=url, caption="Image", post=post, position=0)
+            db.session.add(new_image)
+
+        db.session.commit()
+        flash(_('The post has been updated successfully.'))
+        return redirect(url_for('post_detail', post_id=post.id))
+
+    return render_template('edit_post.html', form=form, post=post)
+
+
+@app.route('/post/<int:post_id>')
+def post_detail(post_id):
+    post = Post.query.get_or_404(post_id)
+    return render_template('post_detail.html', post=post)
+
+@app.route('/post/<int:post_id>/delete', methods=['POST'])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    
+    if post.author.id != current_user.id:
+        flash(_('You cannot delete another user\'s post'))
+        return redirect(url_for('index'))
+
+    try:
+        for image in post.images:
+            if image.caption:
+                file_path = os.path.join(current_app.root_path, 'static', 'images', image.caption)
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+
+            db.session.delete(image)
+
+        # Теперь удаляем сам пост
+        db.session.delete(post)
+        db.session.commit()
+        flash(_('Post and related images successfully deleted'))
+    except Exception as e:
+        db.session.rollback()
+        flash(_('An error occurred while deleting the post: ') + str(e))
+    
+    return redirect(url_for('index'))
