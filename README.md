@@ -78,15 +78,14 @@ flask run
  <h2>Все посты</h2>
  <p>Просмотр всех существующих постов</p>
  <img src="https://github.com/user-attachments/assets/a4175956-843b-42e2-bc58-5d08aeebfcf8"  width="800" /> 
- https://github.com/user-attachments/assets/0d65508f-bd75-425f-b9cb-e1fbc23c889a
 </div>
 
 <div align="center">
- <h2>Все посты</h2>
+ <h2>Махинации с постами</h2>
  <p>Вот так выглядит создание поста</p>
- <img src="https://github.com/user-attachments/assets/e0149efa-0be2-4f87-acda-894763eec92d"  width="800" />
+ <img src="https://github.com/user-attachments/assets/7dd28d3c-891c-4a88-bc44-baf22259f1d2"  width="800" />
  <p>А вот так его редактирование</p>
- <img src="https://github.com/user-attachments/assets/a4175956-843b-42e2-bc58-5d08aeebfcf8"  width="800" />
+ <img src="https://github.com/user-attachments/assets/b5ce6836-4970-466a-a4c9-62469a8e0309"  width="800" />
 </div>
 
 <div align="center">
