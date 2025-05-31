@@ -64,7 +64,7 @@ flask run
 <div align="center">
  <h2>Домашняя страница</h2>
  <p>Посты пользователя и тех, на кого оформлены подписки</p>
- <img src="https://github.com/user-attachments/assets/0b01986d-7a9e-4812-8173-96b2df9ca274"  width="800" />
+ <img src="https://github.com/user-attachments/assets/ceb80d6d-9ed5-4477-a321-129187abac94"  width="800" />
  <img src="https://github.com/user-attachments/assets/7d277a55-576c-4280-8e7b-d76d8adba195"  width="800" />
 </div>
 
@@ -77,6 +77,15 @@ flask run
 <div align="center">
  <h2>Все посты</h2>
  <p>Просмотр всех существующих постов</p>
+ <img src="https://github.com/user-attachments/assets/a4175956-843b-42e2-bc58-5d08aeebfcf8"  width="800" /> 
+ https://github.com/user-attachments/assets/0d65508f-bd75-425f-b9cb-e1fbc23c889a
+</div>
+
+<div align="center">
+ <h2>Все посты</h2>
+ <p>Вот так выглядит создание поста</p>
+ <img src="https://github.com/user-attachments/assets/e0149efa-0be2-4f87-acda-894763eec92d"  width="800" />
+ <p>А вот так его редактирование</p>
  <img src="https://github.com/user-attachments/assets/a4175956-843b-42e2-bc58-5d08aeebfcf8"  width="800" />
 </div>
 
